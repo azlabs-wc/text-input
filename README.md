@@ -4,7 +4,7 @@
 
 ```html
 <script type="module">
-  import 'azl-input/azl-input.js';
+  import '@azlabs-wc/text-input/azl-text-input.js';
 </script>
 
 <azl-input></azl-input>

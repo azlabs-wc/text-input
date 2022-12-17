@@ -8,8 +8,8 @@
   "module": "index.js",
   "exports": {
     ".": "./index.js",
-    "./azl-text-input.ts": "./azl-text-input.ts",
-    "./azl-text-input": "./azl-text-input.js"
+    "./azl-text-input": "./azl-text-input.js",
+    "./azl-text-input.js": "./azl-text-input.js"
   },
   "files": [
     "*"
