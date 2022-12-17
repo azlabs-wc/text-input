@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "noEmitOnError": true,
+      "target": "es2018",
+      "module": "esnext",
+      "moduleResolution": "node",
+      "lib": ["es2017", "dom"],
+      "strict": true,
+      "esModuleInterop": false,
+      "allowSyntheticDefaultImports": true,
+      "experimentalDecorators": true,
+      "importHelpers": true,
+      "sourceMap": true,
+      "inlineSources": true,
+      "declaration": true,
+      "incremental": true,
+      "forceConsistentCasingInFileNames": true,
+      // go to js file when using IDE functions like
+      // "Go to Definition" in VSCode
+      "declarationMap": true
+    }
+  }
