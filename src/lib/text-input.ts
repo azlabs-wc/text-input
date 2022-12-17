@@ -253,8 +253,8 @@ export class TextInput extends LitElement {
           ?readonly=${!!readOnly}
           ?required=${!!required}
           name=${name}
-          maxLength=${TextInput.isTextInputType(type) ? max : ''}
-          minLength=${TextInput.isTextInputType(type) ? min : ''}
+          maxlength=${TextInput.isTextInputType(type) ? max : ''}
+          minlength=${TextInput.isTextInputType(type) ? min : ''}
           max=${!TextInput.isTextInputType(type) ? max : ''}
           min=${!TextInput.isTextInputType(type) ? min : ''}
           placeholder=${placeholder ?? ''}
