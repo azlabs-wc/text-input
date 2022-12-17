@@ -130,7 +130,7 @@ export class TextInput extends LitElement {
     }
     // For loop through basic w3c event except the input and change event
     for (const event of W3cEvents.filter(
-      e => -1 === ['change', 'input', 'focus', 'blur'].indexOf(e)
+      e => ['change', 'input', 'focus', 'blur'].indexOf(e) === -1
     )) {
       this.el.addEventListener(event, this.onW3cEvent.bind(this));
     }
@@ -194,11 +194,10 @@ export class TextInput extends LitElement {
     this.dispatchEvent(new TextInputEvent('blur'));
   }
 
-  private isTextInputType(type: string) {
-    return -1 ===
-      ['text', 'email', 'password', 'search', 'tel', 'url'].indexOf(type)
-      ? false
-      : true;
+  private static isTextInputType(type: string) {
+    return (
+      ['text', 'email', 'password', 'search', 'tel', 'url'].indexOf(type) === 1
+    );
   }
 
   private onW3cEvent(e: Event) {
@@ -234,8 +233,8 @@ export class TextInput extends LitElement {
           .pattern=${pattern}
           ?readonly=${!!readOnly}
           ?required=${!!required}
-          max=${!this.isTextInputType(type) ? max : -1}
-          min=${!this.isTextInputType(type) ? min : -1}
+          max=${!TextInput.isTextInputType(type) ? max : -1}
+          min=${!TextInput.isTextInputType(type) ? min : -1}
           name=${name}
           placeholder=${placeholder}
         />

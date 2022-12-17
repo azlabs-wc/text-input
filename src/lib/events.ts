@@ -6,7 +6,7 @@ export interface TextInputEventType<T extends number | string>
 // #region List of w3c common events
 /**
  * Internal event type tracks
- * 
+ *
  * @internal
  */
 export type EventType =

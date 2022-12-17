@@ -26,7 +26,7 @@ describe('AzlInput', () => {
           max="50"
           min="1"
           name="name"
-          pattern="[\w]"
+          pattern="[w]"
           required
         ></azl-text-input>
       `
@@ -35,7 +35,7 @@ describe('AzlInput', () => {
     expect(el.element.maxLength).to.be.equal(50);
     expect(el.element.minLength).to.be.equal(1);
     expect(el.element.required).to.be.true;
-    expect(el.element.pattern).to.be.equal('[\w]');
+    expect(el.element.pattern).to.be.equal('[w]');
   });
 
   it('test HTML input min and max properties are -1 when type is text, email, or password', async () => {
@@ -50,24 +50,24 @@ describe('AzlInput', () => {
         ></azl-text-input>
       `
     );
-    expect(parseInt(el.element.max)).to.be.equal(-1);
-    expect(parseInt(el.element.min)).to.be.equal(-1);
+    expect(parseInt(el.element.max, 10)).to.be.equal(-1);
+    expect(parseInt(el.element.min, 10)).to.be.equal(-1);
     el.type = 'number';
     await elementUpdated(el);
-    expect(parseInt(el.element.max)).to.be.equal(20);
-    expect(parseInt(el.element.min)).to.be.equal(2);
+    expect(parseInt(el.element.max, 10)).to.be.equal(20);
+    expect(parseInt(el.element.min, 10)).to.be.equal(2);
     el.type = 'email';
     await elementUpdated(el);
-    expect(parseInt(el.element.max)).to.be.equal(-1);
-    expect(parseInt(el.element.min)).to.be.equal(-1);
+    expect(parseInt(el.element.max, 10)).to.be.equal(-1);
+    expect(parseInt(el.element.min, 10)).to.be.equal(-1);
     el.type = 'number';
     await elementUpdated(el);
-    expect(parseInt(el.element.max)).to.be.equal(20);
-    expect(parseInt(el.element.min)).to.be.equal(2);
+    expect(parseInt(el.element.max, 10)).to.be.equal(20);
+    expect(parseInt(el.element.min, 10)).to.be.equal(2);
     el.type = 'password';
     await elementUpdated(el);
-    expect(parseInt(el.element.max)).to.be.equal(-1);
-    expect(parseInt(el.element.min)).to.be.equal(-1);
+    expect(parseInt(el.element.max, 10)).to.be.equal(-1);
+    expect(parseInt(el.element.min, 10)).to.be.equal(-1);
   });
 
   it('test component dispatches change event whenevener internal input changes', async () => {
@@ -77,7 +77,7 @@ describe('AzlInput', () => {
     let called = 0;
     let calledWith!: string;
     const changeEventListener = (e: Event) => {
-      called++;
+      called += 1;
       calledWith = (e as TextInputEventType<string>).data;
     };
     el.addEventListener('change', changeEventListener);
@@ -89,17 +89,17 @@ describe('AzlInput', () => {
     el.removeEventListener('change', changeEventListener);
   });
 
-  it('test that internal input events propagates to the text-input component', async() => {
+  it('test that internal input events propagates to the text-input component', async () => {
     const el = await fixture<TextInput>(
       html` <azl-text-input name="name"></azl-text-input> `
     );
     let called = 0;
     let clicked = 0;
-    const blurEventListener = (e: Event) => {
-      called++;
+    const blurEventListener = () => {
+      called += 1;
     };
-    const clickEventListener = (e: Event) => {
-      clicked++;
+    const clickEventListener = () => {
+      clicked += 1;
     };
     el.addEventListener('blur', blurEventListener);
     el.addEventListener('click', clickEventListener);
