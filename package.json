@@ -3,7 +3,7 @@
   "description": "HTML text input web component",
   "license": "MIT",
   "author": "Azandrew Sidoine <azandrewdevelopper@gmail.com>",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "index.js",
   "module": "index.js",
   "exports": {
