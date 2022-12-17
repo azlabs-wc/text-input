@@ -50,24 +50,24 @@ describe('AzlInput', () => {
         ></azl-text-input>
       `
     );
-    expect(parseInt(el.element.max, 10)).to.be.equal(-1);
-    expect(parseInt(el.element.min, 10)).to.be.equal(-1);
+    expect(el.element.max).to.be.equal('');
+    expect(el.element.min).to.be.equal('');
     el.type = 'number';
     await elementUpdated(el);
     expect(parseInt(el.element.max, 10)).to.be.equal(20);
     expect(parseInt(el.element.min, 10)).to.be.equal(2);
     el.type = 'email';
     await elementUpdated(el);
-    expect(parseInt(el.element.max, 10)).to.be.equal(-1);
-    expect(parseInt(el.element.min, 10)).to.be.equal(-1);
+    expect(el.element.max).to.be.equal('');
+    expect(el.element.min).to.be.equal('');
     el.type = 'number';
     await elementUpdated(el);
     expect(parseInt(el.element.max, 10)).to.be.equal(20);
     expect(parseInt(el.element.min, 10)).to.be.equal(2);
     el.type = 'password';
     await elementUpdated(el);
-    expect(parseInt(el.element.max, 10)).to.be.equal(-1);
-    expect(parseInt(el.element.min, 10)).to.be.equal(-1);
+    expect(el.element.max).to.be.equal('');
+    expect(el.element.min).to.be.equal('');
   });
 
   it('test component dispatches change event whenevener internal input changes', async () => {

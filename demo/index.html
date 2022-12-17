@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        *,
+        body,
+        :host {
+            font-size: calc(10px + 2vmin);
+            color: #1a2b42;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body {
+            background: #fafafa;
+        }
+        .page-title {
+            text-align: center;
+            font-size: 3rem;
+            line-height: 1.2rem;
+            margin-top: 4rem;
+            margin-bottom: 2rem;
+        }
+        .components-container {
+            text-align: left;
+            margin-left: 43.5%;
+        }
+        .output-section {
+            margin-left: 43.5%;
+            margin-top: 4rem;
+        }
+        .preview-item {
+            line-height: 1.7rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-title">Text Input</div>
+    <div id="demo"></div>
+
+    <div class="output-section">
+        <div class="preview-item"><strong>Username: </strong> <span id="username-section"></span></div>
+        <div class="preview-item"><strong>Email: </strong><span id="email-section"></span></div>
+        <div class="preview-item"><strong>Password: </strong> <span id="password-section"></span></div>
+    </div>
+    <script type="module">
+        import { html, render } from 'lit';
+        import '../dist/azl-text-input.js';
+
+        const usernameViewSelector = document.querySelector('#username-section');
+        const emailViewSelector = document.querySelector('#email-section');
+        const passwordViewSelector = document.querySelector('#password-section');
+
+        function textInputChange(e) {
+            usernameViewSelector.innerHTML = e.data;
+        }
+
+        function emailInputChange(e) {
+            emailViewSelector.innerHTML = e.data;
+        }
+
+        function passwordInputChange(e) {
+            passwordViewSelector.innerHTML = e.data;
+        }
+
+        render(
+            html`
+            <div class="components-container">
+                <azl-text-input @change=${textInputChange} type="text" name="text-text-input">
+                  <label>Username: </label>
+                </azl-text-input>
+                <azl-text-input @change=${emailInputChange} type="email" name="email-text-input">
+                  <label>Email Adress: </label>
+                </azl-text-input>
+                <azl-text-input @change=${passwordInputChange} type="password" name="password-text-input">
+                  <label>Password: </label>
+                </azl-text-input>
+            </div>
+      `,
+            document.querySelector('#demo')
+        );
+    </script>
+</body>
+
+</html>

@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "analyze": "cem analyze --litelement",
-    "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
+    "start": "rimraf tsconfig.tsbuildinfo && rimraf dist && tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
     "build": "rimraf tsconfig.tsbuildinfo && rimraf dist && tsc && npm run analyze -- --exclude dist",
     "prepublish": "tsc && npm run analyze -- --exclude dist",
     "lint": "eslint --ext .ts,.html .  --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore --end-of-line auto",
@@ -24,8 +24,6 @@
     "format:check": "prettier \"**/*.ts\" --check --ignore-path .gitignore --end-of-line auto",
     "test": "rimraf tsconfig.tsbuildinfo && rimraf dist && tsc -p tsconfig.specs.json && wtr --coverage && rimraf ./dist",
     "test:watch": "tsc -p tsconfig.specs.json && concurrently -k -r \"tsc -p tsconfig.specs.json --watch --preserveWatchOutput\" \"wtr --watch\"",
-    "storybook": "tsc && npm run analyze -- --exclude dist && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds -c .storybook/server.mjs\"",
-    "storybook:build": "tsc && npm run analyze -- --exclude dist && build-storybook",
     "postbuild": "npm-prepare-dist -f README.md -f LICENSE -s test -s test:watch -s storybook -s storybook:build -s postbuild"
   },
   "dependencies": {

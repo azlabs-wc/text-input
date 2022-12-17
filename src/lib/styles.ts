@@ -9,20 +9,20 @@ export const styles = css`
   }
 
   input,
-  ::slotted(*) {
+  ::slotted(label) {
     touch-action: manipulation;
   }
 
-  ::slotted(*) {
+  .text-input ::slotted(label) {
     font-size: var(--text-input-label-font-size, 0.8rem);
-    font-weight: var(--text-input-label-font-weight, 400);
-    top: var(--text-input-label-top, 4px);
+    font-weight: var(--text-input-label-font-weight, 500);
+    top: var(--text-input-label-top, 3px);
     position: absolute;
     display: block;
     transition: all 200ms ease-in-out;
   }
 
-  ::slotted(input) {
+  input {
     position: relative;
     width: auto;
     -webkit-appearance: none;
@@ -60,8 +60,8 @@ export const styles = css`
       ${unsafeCSS(`var(--text-input-color, hsl(198deg, 100%, 32%)) 95%`)}
     );
     border-image-slice: 1;
-    font-size: var(--text-input-font-size, 1.2rem);
-    font-weight: var(--text-input-font-weight, 500);
+    font-size: var(--text-input-font-size, 1rem);
+    font-weight: var(--text-input-font-weight, 400);
   }
   input:required,
   input:invalid {

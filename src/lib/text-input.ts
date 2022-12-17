@@ -187,7 +187,13 @@ export class TextInput extends LitElement {
     const label = this._labelNodes[0];
     if (label) {
       const { top, color } = this.labelComputedStyles;
-      label.style.setProperty('top', `${top}px`);
+      if (
+        typeof this._value === 'undefined' ||
+        this._value === null ||
+        this._value === ''
+      ) {
+        label.style.setProperty('top', `${top}px`);
+      }
       label.style.setProperty('color', color);
     }
     e?.stopPropagation();
@@ -196,7 +202,7 @@ export class TextInput extends LitElement {
 
   private static isTextInputType(type: string) {
     return (
-      ['text', 'email', 'password', 'search', 'tel', 'url'].indexOf(type) === 1
+      ['text', 'email', 'password', 'search', 'tel', 'url'].indexOf(type) !== -1
     );
   }
 
@@ -218,25 +224,40 @@ export class TextInput extends LitElement {
       name,
       placeholder,
     } = this;
+
+    // if (!TextInput.isTextInputType(type)) {
+    //   if (max) {
+    //     this.el.max = max ? max.toString() : '';
+    //   }
+    //   if (min) {
+    //     this.el.min = min ? min.toString() : '';
+    //   }
+    // } else {
+    //   if (max) {
+    //     this.el.maxLength = max;
+    //   }
+    //   if (min) {
+    //     this.el.minLength = min;
+    //   }
+    // }
+
     return html`
-      <div class="input-container">
-        <!-- input label slot -->
+      <div class="text-input">
         <slot></slot>
-        <!-- input label slot -->
         <input
           id="text-input"
-          .autocomplete=${autocomplete}
-          .maxLength=${max}
-          .minLength=${min}
+          .autocomplete=${autocomplete ?? ''}
           .type=${type}
-          .value=${value}
-          .pattern=${pattern}
+          .value=${value ?? ''}
+          .pattern=${pattern ?? ''}
           ?readonly=${!!readOnly}
           ?required=${!!required}
-          max=${!TextInput.isTextInputType(type) ? max : -1}
-          min=${!TextInput.isTextInputType(type) ? min : -1}
           name=${name}
-          placeholder=${placeholder}
+          maxLength=${TextInput.isTextInputType(type) ? max : ''}
+          minLength=${TextInput.isTextInputType(type) ? min : ''}
+          max=${!TextInput.isTextInputType(type) ? max : ''}
+          min=${!TextInput.isTextInputType(type) ? min : ''}
+          placeholder=${placeholder ?? ''}
         />
       </div>
     `;
