@@ -225,22 +225,6 @@ export class TextInput extends LitElement {
       placeholder,
     } = this;
 
-    // if (!TextInput.isTextInputType(type)) {
-    //   if (max) {
-    //     this.el.max = max ? max.toString() : '';
-    //   }
-    //   if (min) {
-    //     this.el.min = min ? min.toString() : '';
-    //   }
-    // } else {
-    //   if (max) {
-    //     this.el.maxLength = max;
-    //   }
-    //   if (min) {
-    //     this.el.minLength = min;
-    //   }
-    // }
-
     return html`
       <div class="text-input">
         <slot></slot>
