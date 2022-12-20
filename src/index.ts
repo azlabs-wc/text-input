@@ -1,4 +1,4 @@
-import { TextInputEventType } from './lib/events.js';
+import { TextInputEventType, TextInputEvent } from './lib/events.js';
 import { TextInput } from './lib/TextInput.js';
 
 declare global {
@@ -7,4 +7,4 @@ declare global {
   }
 }
 
-export { TextInput, TextInputEventType };
+export { TextInput, TextInputEventType, TextInputEvent };

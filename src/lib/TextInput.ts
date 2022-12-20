@@ -7,7 +7,7 @@ import { TextInputEvent, W3cEvents } from './events.js';
 import { styles as componentStyles } from './TextInput.styles.js';
 
 /**
- * @event TextInputEvent
+ * @fires TextInputEvent
  */
 export class TextInput extends LitElement {
   // #region Component reactive properties
