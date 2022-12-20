@@ -9,8 +9,8 @@ export const styles = css`
   }
 
   .text-input.basic {
-    padding: var(--text-input-no-label-padding-top, 0) !important;
-    margin: var(--text-input-no-label-padding-top, 0) !important;
+    padding: var(--text-input-basic-padding-top, 0) !important;
+    margin: var(--text-input-basic-padding-top, 0) !important;
   }
 
   input,
@@ -37,11 +37,11 @@ export const styles = css`
     margin: 0;
     border-radius: var(--text-input-border-radius, 0);
     border-top: var(--text-input-border-top-width, 0) solid
-      var(--text-input-border-top-color, transparent);
+      var(--text-input-border-color, transparent);
     border-left: var(--text-input-border-left-width, 0) solid
-      var(--text-input-border-top-color, transparent);
+      var(--text-input-border-color, transparent);
     border-right: var(--text-input-border-right-width, 0) solid
-      var(--text-input-border-top-color, transparent);
+      var(--text-input-border-color, transparent);
     border-bottom: var(--text-input-border-bottom-width, 0.05rem) solid
       var(--text-input-border-color, hsl(198deg, 10%, 46%));
     height: var(--text-input-height, 1rem);
@@ -50,7 +50,8 @@ export const styles = css`
     display: inline-block;
     padding: var(--text-input-border-radius, 0 0.3rem);
     max-height: var(--text-input-max-height, 1.2rem);
-    font-size: var(--text-input-max-height, 0.8rem);
+    font-size: var(--text-input-font-size, inherit);
+    font-weight: var(--text-input-font-weight, inherit);
     background: transparent;
     transition: border-color 200ms ease-in-out;
     outline: 0;
@@ -65,8 +66,8 @@ export const styles = css`
       ${unsafeCSS(`var(--text-input-color, hsl(198deg, 100%, 32%)) 95%`)}
     );
     border-image-slice: 1;
-    font-size: var(--text-input-font-size, 1rem);
-    font-weight: var(--text-input-font-weight, 400);
+    font-size: var(--text-input-focus-font-size, 1rem);
+    font-weight: var(--text-input-focus-font-weight, 400);
   }
   input:required,
   input:invalid {

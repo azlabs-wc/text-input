@@ -7,7 +7,10 @@ export function registerElement(name: string, elementClass: any) {
     typeof window.customElements !== 'undefined' &&
     window.customElements !== null
   ) {
-    window.customElements.define(name, elementClass);
+    const customElement = window.customElements.get(name);
+    if (typeof customElement === 'undefined' || customElement === null) {
+      window.customElements.define(name, elementClass);
+    }
   }
 }
 registerElement('azl-text-input', TextInput);
