@@ -1,4 +1,5 @@
-import { LitElement, PropertyValueMap, html } from 'lit';
+import { LitElement, PropertyValueMap, html, nothing } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
 import { property } from 'lit/decorators/property.js';
 import { queryAssignedElements } from 'lit/decorators/query-assigned-elements.js';
 import { query } from 'lit/decorators/query.js';
@@ -105,6 +106,18 @@ export class TextInput extends LitElement {
   @property({ type: Number, attribute: 'label-flow-offset' })
   labelFlowOffset: number = 16;
 
+  /**
+   * Create a basic input component. Adding the current attribute to the component
+   * create an input wihtout a label or slotted element that describe the input
+   *
+   * ```html
+   * <azl-text-input name="..." placeholder="..." basic @change=${onChangeListerner}></azl-text-input>
+   * ```
+   *
+   * @attr basic
+   */
+  @property({ type: Boolean, attribute: 'basic' })
+  basic: boolean = false;
   // #endregion Component reactive properties
 
   static override get styles() {
@@ -226,9 +239,10 @@ export class TextInput extends LitElement {
       placeholder,
     } = this;
 
+    const fallbackPlaceholder = this.basic ? 'Enter...' : '';
     return html`
-      <div class="text-input">
-        <slot></slot>
+      <div class="text-input${classMap({ basic: this.basic })}">
+        ${!this.basic ? html`<slot></slot>` : nothing}
         <input
           id="text-input"
           .autocomplete=${autocomplete ?? ''}
@@ -242,7 +256,9 @@ export class TextInput extends LitElement {
           minlength=${TextInput.isTextInputType(type) ? min : ''}
           max=${!TextInput.isTextInputType(type) ? max : ''}
           min=${!TextInput.isTextInputType(type) ? min : ''}
-          placeholder=${placeholder ?? ''}
+          .placeholder=${placeholder && placeholder !== ''
+            ? placeholder
+            : fallbackPlaceholder}
         />
       </div>
     `;

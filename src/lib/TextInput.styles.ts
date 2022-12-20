@@ -3,9 +3,14 @@ import { css, unsafeCSS } from 'lit';
 export const styles = css`
   .text-input {
     position: relative;
-    padding: 1.2rem 0 0;
-    margin: 0.7rem 0rem;
+    padding: var(--text-input-padding-top, 1.2rem) 0 0 !important;
+    margin: var(--text-input-margin-top, 0.7rem) 0rem !important;
     width: var(--text-input-width, 100%);
+  }
+
+  .text-input.basic {
+    padding: var(--text-input-no-label-padding-top, 0) !important;
+    margin: var(--text-input-no-label-padding-top, 0) !important;
   }
 
   input,
@@ -81,5 +86,22 @@ export const styles = css`
       no-repeat;
     background-size: 0% 100%;
     transition: background-size 200ms ease-in-out;
+  }
+
+  input::-webkit-input-placeholder {
+    /* Edge */
+    color: var(--text-input-color, #949494);
+    font-family: var(--text-input-font-family, inherit);
+  }
+
+  input:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: var(--text-input-color, #949494);
+    font-family: var(--text-input-font-family, inherit);
+  }
+
+  input::placeholder {
+    color: var(--text-input-color, #949494);
+    font-family: var(--text-input-font-family, inherit);
   }
 `;
