@@ -1,5 +1,5 @@
 import { TextInputEventType } from './lib/events.js';
-import { TextInput } from './lib/text-input.js';
+import { TextInput } from './lib/TextInput.js';
 
 declare global {
   interface HTMLElementTagNameMap {

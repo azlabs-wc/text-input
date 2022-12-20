@@ -2,8 +2,8 @@ import { LitElement, PropertyValueMap, html } from 'lit';
 import { property } from 'lit/decorators/property.js';
 import { queryAssignedElements } from 'lit/decorators/query-assigned-elements.js';
 import { query } from 'lit/decorators/query.js';
-import { EventType, TextInputEvent, W3cEvents } from './events.js';
-import { styles as componentStyles } from './styles.js';
+import { TextInputEvent, W3cEvents } from './events.js';
+import { styles as componentStyles } from './TextInput.styles.js';
 
 /**
  * @event TextInputEvent
@@ -207,8 +207,9 @@ export class TextInput extends LitElement {
   }
 
   private onW3cEvent(e: Event) {
-    this.dispatchEvent(new TextInputEvent(e.type as EventType));
     e?.stopPropagation();
+    const eventClone = new (e.constructor as any)(e.type, e);
+    this.dispatchEvent(eventClone);
   }
 
   override render() {
